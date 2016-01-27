@@ -51,6 +51,43 @@ public class rabbit extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+        ifAtEdge();
+    }   
+    public void ifAtEdge()
+    {
+        if (atEdge())
+        {
+             turn(180);
+        }
+    }
+    public boolean atEdge()
+    {
+        if(getX() < 10 || getX() > getWorld().getWidth() - 10)
+            return true;
+        if(getY() < 10 || getY() > getWorld().getHeight() - 10)
+            return true;
+        else
+            return false;
+    }
+    public void keys () 
+    {
+        if (Greenfoot.isKeyDown("M"))
+        {
+            move (smallJump);
+            currJump += 1;
+        }
+        if (Greenfoot.isKeyDown("K")) 
+        {
+            move (bigJump);
+            currJump += 1;
+        }
+        if (Greenfoot.isKeyDown("O"))
+        {
+            turn (turnAmount);
+        }
+    }
+    if (currJump >= maxJumps)
+    {
+        
+    }
 }
