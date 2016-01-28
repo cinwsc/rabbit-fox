@@ -41,7 +41,7 @@ public class rabbit extends Actor
     private int currJump =  0;  // counter to keep track of number of jumps before
                                 // rabbit goes into rest mode.
     
-    private int restCycle = 500; // This is the number of act cycles that
+    private int restCycle = 400; // This is the number of act cycles that
                                  // a rabbit must rest when he is in rest mode.
                                  // When in rest mode, a rabbit is completely still.
     private boolean inRestMode = false; // Set to true after maxJumps                            
@@ -52,6 +52,8 @@ public class rabbit extends Actor
     public void act() 
     {
         ifAtEdge();
+        keys();
+        jumps();
     }   
     public void ifAtEdge()
     {
@@ -71,26 +73,36 @@ public class rabbit extends Actor
     }
     public void keys () 
     {
-        if (Greenfoot.isKeyDown("M"))
+        if (Greenfoot.isKeyDown("m"))
         {
-            move (smallJump);
+            move(smallJump);
             currJump += 1;
         }
-        if (Greenfoot.isKeyDown("K")) 
+        if (Greenfoot.isKeyDown("k")) 
         {
-            move (bigJump);
+            move(bigJump);
             currJump += 1;
         }
-        if (Greenfoot.isKeyDown("O"))
+        if (Greenfoot.isKeyDown("o"))
         {
-            turn (turnAmount);
+            turn(turnAmount);
         }
     }
-    public void rest()
+    public void jumps()
     {
-        if (currJump >= maxJumps) 
+        if (currJump > maxJumps) 
         {
-            
+            inRestMode = true;
+            resting();
+        }
+    }
+    public void resting () 
+    {
+        if (inRestMode = true)
+        {
+            Greenfoot.delay (restCycle);
+            inRestMode = false;
+            currJump = 0;
         }
     }
 }
