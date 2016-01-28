@@ -55,7 +55,7 @@ public class rabbit extends Actor
     }   
     public void ifAtEdge()
     {
-        if (atEdge())
+        if (atEdge()== true)
         {
              turn(180);
         }
@@ -86,8 +86,11 @@ public class rabbit extends Actor
             turn (turnAmount);
         }
     }
-    if (currJump >= maxJumps)
+    public void rest()
     {
-        
+        if (currJump >= maxJumps) 
+        {
+            
+        }
     }
 }
